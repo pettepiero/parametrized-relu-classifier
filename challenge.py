@@ -172,7 +172,7 @@ def plot_alphas(ax, batch_alpha_0, batch_alpha_1, batch_alpha_2):
 def main():
     ## Import train and test dataset, scale them and convert them to data loaders
     BATCH_SIZE = 64
-    EPOCHS = 2
+    EPOCHS = 10
     LEARNING_RATE = 0.01
     MOMENTUM = 0.0
 
@@ -250,7 +250,7 @@ def main():
     lambda_range = np.arange(start=0, stop=0.051, step=0.005)
     df = pd.DataFrame(columns=["lambda", "alpha0", "alpha1", "alpha2", "iteration"])
 
-    ITERATIONS = 1
+    ITERATIONS = 5
     for iteration in range(ITERATIONS):
         for lam in lambda_range:
             for i in range(1):
