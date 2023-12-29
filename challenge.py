@@ -253,7 +253,7 @@ def main():
     ITERATIONS = 5
     for iteration in range(ITERATIONS):
         for lam in lambda_range:
-            for i in range(1):
+            for i in range(6):
                 alpha0 = np.random.choice(alpha_range, size=1).astype(float)
                 alpha1 = np.random.choice(alpha_range, size=1).astype(float)
                 alpha2 = np.random.choice(alpha_range, size=1).astype(float)
