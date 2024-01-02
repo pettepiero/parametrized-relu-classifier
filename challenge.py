@@ -224,9 +224,6 @@ def main():
         9: "Ankle boot",
     }
 
-    ticks = list(description.keys())
-    tick_labels = list(description.values())
-
     # Get some random training images
     dataiter = train_loader.__iter__()
     images, labels = dataiter.__next__()
@@ -248,10 +245,10 @@ def main():
 
     alpha_range = np.arange(start=0, stop=1, step=0.05)
     lambda_range = np.arange(start=0, stop=0.051, step=0.005)
-    df = pd.DataFrame(columns=["lambda", "alpha0", "alpha1", "alpha2", "iteration"])
 
     ITERATIONS = 5
     for iteration in range(ITERATIONS):
+        df = pd.DataFrame(columns=["lambda", "alpha0", "alpha1", "alpha2", "iteration"])
         for lam in lambda_range:
             for i in range(6):
                 alpha0 = np.random.choice(alpha_range, size=1).astype(float)
@@ -284,10 +281,9 @@ def main():
                 df_temp.iloc[:, :] = None
 
         # Exporting dataframe to file
-        df.to_csv(f"./alphas_df_it_{iteration}.csv", index=False)
+        df.to_csv(f"./results/alphas_df_it_{iteration}.csv", index=False)
         # Emptying dataframe
-        df.iloc[:, :] = None
-
+        del df
 
     for counter, lam in enumerate(lambda_range):
         fig, ax = plt.subplots(2, 3, figsize=(20, 20), dpi=200)
@@ -306,6 +302,7 @@ def main():
         fig.subplots_adjust(top=0.95)
         plt.legend()
         plt.savefig(f"./alphas_plots/alphas_{counter}.png")
+
 
 if __name__ == "__main__":
     main()
